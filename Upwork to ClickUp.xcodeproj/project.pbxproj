@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0194207B28BE85DD0096E1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194207A28BE85DD0096E1BA /* AppDelegate.swift */; };
+		0194207F28BE85DD0096E1BA /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 0194207D28BE85DD0096E1BA /* Main.html */; };
+		0194208128BE85DD0096E1BA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0194208028BE85DD0096E1BA /* Icon.png */; };
+		0194208328BE85DD0096E1BA /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 0194208228BE85DD0096E1BA /* Style.css */; };
+		0194208528BE85DD0096E1BA /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 0194208428BE85DD0096E1BA /* Script.js */; };
+		0194208728BE85DD0096E1BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194208628BE85DD0096E1BA /* ViewController.swift */; };
+		0194208A28BE85DD0096E1BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0194208828BE85DD0096E1BA /* Main.storyboard */; };
+		0194208C28BE85E10096E1BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0194208B28BE85E10096E1BA /* Assets.xcassets */; };
+		0194209428BE85E10096E1BA /* Upwork to ClickUp Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0194209328BE85E10096E1BA /* Upwork to ClickUp Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0194209928BE85E10096E1BA /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194209828BE85E10096E1BA /* SafariWebExtensionHandler.swift */; };
+		0194209C28BE85E10096E1BA /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 0194209B28BE85E10096E1BA /* _locales */; };
+		0194209E28BE85E20096E1BA /* images in Resources */ = {isa = PBXBuildFile; fileRef = 0194209D28BE85E20096E1BA /* images */; };
+		019420A028BE85E20096E1BA /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 0194209F28BE85E20096E1BA /* manifest.json */; };
+		019420A228BE85E20096E1BA /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 019420A128BE85E20096E1BA /* background.js */; };
+		019420A428BE85E20096E1BA /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 019420A328BE85E20096E1BA /* content.js */; };
+		019420A628BE85E20096E1BA /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 019420A528BE85E20096E1BA /* popup.html */; };
+		019420A828BE85E20096E1BA /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 019420A728BE85E20096E1BA /* popup.css */; };
+		019420AA28BE85E20096E1BA /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 019420A928BE85E20096E1BA /* popup.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0194209528BE85E10096E1BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0194206F28BE85DD0096E1BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0194209228BE85E10096E1BA;
+			remoteInfo = "Upwork to ClickUp Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		019420B228BE85E20096E1BA /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0194209428BE85E10096E1BA /* Upwork to ClickUp Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0194207728BE85DD0096E1BA /* Upwork to ClickUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Upwork to ClickUp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0194207A28BE85DD0096E1BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0194207E28BE85DD0096E1BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
+		0194208028BE85DD0096E1BA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		0194208228BE85DD0096E1BA /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		0194208428BE85DD0096E1BA /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		0194208628BE85DD0096E1BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0194208928BE85DD0096E1BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0194208B28BE85E10096E1BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0194208D28BE85E10096E1BA /* Upwork_to_ClickUp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Upwork_to_ClickUp.entitlements; sourceTree = "<group>"; };
+		0194208E28BE85E10096E1BA /* Upwork to ClickUp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Upwork to ClickUp.entitlements"; sourceTree = "<group>"; };
+		0194209328BE85E10096E1BA /* Upwork to ClickUp Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Upwork to ClickUp Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0194209828BE85E10096E1BA /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		0194209B28BE85E10096E1BA /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		0194209D28BE85E20096E1BA /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		0194209F28BE85E20096E1BA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		019420A128BE85E20096E1BA /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = background.js; sourceTree = "<group>"; };
+		019420A328BE85E20096E1BA /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = content.js; sourceTree = "<group>"; };
+		019420A528BE85E20096E1BA /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		019420A728BE85E20096E1BA /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = popup.css; sourceTree = "<group>"; };
+		019420A928BE85E20096E1BA /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = popup.js; sourceTree = "<group>"; };
+		019420AB28BE85E20096E1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		019420AC28BE85E20096E1BA /* Upwork_to_ClickUp_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Upwork_to_ClickUp_Extension.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0194207428BE85DD0096E1BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0194209028BE85E10096E1BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0194206E28BE85DD0096E1BA = {
+			isa = PBXGroup;
+			children = (
+				0194207928BE85DD0096E1BA /* Upwork to ClickUp */,
+				0194209728BE85E10096E1BA /* Upwork to ClickUp Extension */,
+				0194207828BE85DD0096E1BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0194207828BE85DD0096E1BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0194207728BE85DD0096E1BA /* Upwork to ClickUp.app */,
+				0194209328BE85E10096E1BA /* Upwork to ClickUp Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0194207928BE85DD0096E1BA /* Upwork to ClickUp */ = {
+			isa = PBXGroup;
+			children = (
+				0194207A28BE85DD0096E1BA /* AppDelegate.swift */,
+				0194208628BE85DD0096E1BA /* ViewController.swift */,
+				0194208828BE85DD0096E1BA /* Main.storyboard */,
+				0194208B28BE85E10096E1BA /* Assets.xcassets */,
+				0194208D28BE85E10096E1BA /* Upwork_to_ClickUp.entitlements */,
+				0194208E28BE85E10096E1BA /* Upwork to ClickUp.entitlements */,
+				0194207C28BE85DD0096E1BA /* Resources */,
+			);
+			path = "Upwork to ClickUp";
+			sourceTree = "<group>";
+		};
+		0194207C28BE85DD0096E1BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0194207D28BE85DD0096E1BA /* Main.html */,
+				0194208028BE85DD0096E1BA /* Icon.png */,
+				0194208228BE85DD0096E1BA /* Style.css */,
+				0194208428BE85DD0096E1BA /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0194209728BE85E10096E1BA /* Upwork to ClickUp Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0194209828BE85E10096E1BA /* SafariWebExtensionHandler.swift */,
+				019420AB28BE85E20096E1BA /* Info.plist */,
+				019420AC28BE85E20096E1BA /* Upwork_to_ClickUp_Extension.entitlements */,
+				0194209A28BE85E10096E1BA /* Resources */,
+			);
+			path = "Upwork to ClickUp Extension";
+			sourceTree = "<group>";
+		};
+		0194209A28BE85E10096E1BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0194209B28BE85E10096E1BA /* _locales */,
+				0194209D28BE85E20096E1BA /* images */,
+				0194209F28BE85E20096E1BA /* manifest.json */,
+				019420A128BE85E20096E1BA /* background.js */,
+				019420A328BE85E20096E1BA /* content.js */,
+				019420A528BE85E20096E1BA /* popup.html */,
+				019420A728BE85E20096E1BA /* popup.css */,
+				019420A928BE85E20096E1BA /* popup.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0194207628BE85DD0096E1BA /* Upwork to ClickUp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 019420B328BE85E20096E1BA /* Build configuration list for PBXNativeTarget "Upwork to ClickUp" */;
+			buildPhases = (
+				0194207328BE85DD0096E1BA /* Sources */,
+				0194207428BE85DD0096E1BA /* Frameworks */,
+				0194207528BE85DD0096E1BA /* Resources */,
+				019420B228BE85E20096E1BA /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0194209628BE85E10096E1BA /* PBXTargetDependency */,
+			);
+			name = "Upwork to ClickUp";
+			productName = "Upwork to ClickUp";
+			productReference = 0194207728BE85DD0096E1BA /* Upwork to ClickUp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0194209228BE85E10096E1BA /* Upwork to ClickUp Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 019420AF28BE85E20096E1BA /* Build configuration list for PBXNativeTarget "Upwork to ClickUp Extension" */;
+			buildPhases = (
+				0194208F28BE85E10096E1BA /* Sources */,
+				0194209028BE85E10096E1BA /* Frameworks */,
+				0194209128BE85E10096E1BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Upwork to ClickUp Extension";
+			productName = "Upwork to ClickUp Extension";
+			productReference = 0194209328BE85E10096E1BA /* Upwork to ClickUp Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0194206F28BE85DD0096E1BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					0194207628BE85DD0096E1BA = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					0194209228BE85E10096E1BA = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 0194207228BE85DD0096E1BA /* Build configuration list for PBXProject "Upwork to ClickUp" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0194206E28BE85DD0096E1BA;
+			productRefGroup = 0194207828BE85DD0096E1BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0194207628BE85DD0096E1BA /* Upwork to ClickUp */,
+				0194209228BE85E10096E1BA /* Upwork to ClickUp Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0194207528BE85DD0096E1BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0194208128BE85DD0096E1BA /* Icon.png in Resources */,
+				0194208A28BE85DD0096E1BA /* Main.storyboard in Resources */,
+				0194208528BE85DD0096E1BA /* Script.js in Resources */,
+				0194207F28BE85DD0096E1BA /* Main.html in Resources */,
+				0194208C28BE85E10096E1BA /* Assets.xcassets in Resources */,
+				0194208328BE85DD0096E1BA /* Style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0194209128BE85E10096E1BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				019420A228BE85E20096E1BA /* background.js in Resources */,
+				019420A828BE85E20096E1BA /* popup.css in Resources */,
+				019420A628BE85E20096E1BA /* popup.html in Resources */,
+				0194209E28BE85E20096E1BA /* images in Resources */,
+				019420A028BE85E20096E1BA /* manifest.json in Resources */,
+				0194209C28BE85E10096E1BA /* _locales in Resources */,
+				019420A428BE85E20096E1BA /* content.js in Resources */,
+				019420AA28BE85E20096E1BA /* popup.js in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0194207328BE85DD0096E1BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0194208728BE85DD0096E1BA /* ViewController.swift in Sources */,
+				0194207B28BE85DD0096E1BA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0194208F28BE85E10096E1BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0194209928BE85E10096E1BA /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0194209628BE85E10096E1BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0194209228BE85E10096E1BA /* Upwork to ClickUp Extension */;
+			targetProxy = 0194209528BE85E10096E1BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0194207D28BE85DD0096E1BA /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0194207E28BE85DD0096E1BA /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		0194208828BE85DD0096E1BA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0194208928BE85DD0096E1BA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		019420AD28BE85E20096E1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		019420AE28BE85E20096E1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		019420B028BE85E20096E1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Upwork to ClickUp Extension/Upwork_to_ClickUp_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Upwork to ClickUp Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Upwork to ClickUp Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kadutskyi.Upwork-to-ClickUp.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		019420B128BE85E20096E1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Upwork to ClickUp Extension/Upwork_to_ClickUp_Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Upwork to ClickUp Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Upwork to ClickUp Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kadutskyi.Upwork-to-ClickUp.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		019420B428BE85E20096E1BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Upwork to ClickUp/Upwork to ClickUp.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Upwork to ClickUp";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kadutskyi.Upwork-to-ClickUp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		019420B528BE85E20096E1BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Upwork to ClickUp/Upwork to ClickUp.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Upwork to ClickUp";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kadutskyi.Upwork-to-ClickUp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0194207228BE85DD0096E1BA /* Build configuration list for PBXProject "Upwork to ClickUp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				019420AD28BE85E20096E1BA /* Debug */,
+				019420AE28BE85E20096E1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		019420AF28BE85E20096E1BA /* Build configuration list for PBXNativeTarget "Upwork to ClickUp Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				019420B028BE85E20096E1BA /* Debug */,
+				019420B128BE85E20096E1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		019420B328BE85E20096E1BA /* Build configuration list for PBXNativeTarget "Upwork to ClickUp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				019420B428BE85E20096E1BA /* Debug */,
+				019420B528BE85E20096E1BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0194206F28BE85DD0096E1BA /* Project object */;
+}
