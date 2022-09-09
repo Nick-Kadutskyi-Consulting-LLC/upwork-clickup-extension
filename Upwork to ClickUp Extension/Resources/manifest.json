@@ -42,5 +42,8 @@
   "permissions": [
     "storage",
     "https://api.clickup.com/*"
+  ],
+  "web_accessible_resources": [
+    "images/cl-icon.png"
   ]
 }

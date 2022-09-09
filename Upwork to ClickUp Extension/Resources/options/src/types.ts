@@ -40,12 +40,21 @@ export interface ClList {
     folder?: ClFolder;
 }
 
+export interface JobSentToClickUp {
+    task_id: string;
+    task_title: string;
+    task_url: string;
+    job_id: string;
+    job_title: string;
+    job_date_posted: number;
+}
+
 export interface LocalStore {
     clickUpApiToken: string;
     clickUpListToSaveJobs: ClList | undefined | null;
     availableFieldsInList: any[];
-    upworkJobsSentToClickUp: string[];
-    taskFieldMarkup: { [key: string]: string };
+    upworkJobsSentToClickUp: JobSentToClickUp[];
+    taskFieldMarkup: { [key: string]: { type: ClFieldType, markup: string } };
     patched: boolean;
 }
 

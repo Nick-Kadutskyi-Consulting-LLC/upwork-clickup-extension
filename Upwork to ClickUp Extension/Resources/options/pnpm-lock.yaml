@@ -13,6 +13,7 @@ specifiers:
   '@popperjs/core': ^2.11.5
   '@rushstack/eslint-patch': ^1.1.4
   '@types/bootstrap': ^5.2.3
+  '@types/debounce': ^1.2.1
   '@types/node': ^16.11.56
   '@types/numeral': ^2.0.2
   '@vitejs/plugin-vue': ^3.0.1
@@ -25,6 +26,7 @@ specifiers:
   chrono-node: ^2.4.1
   css-loader: '*'
   dayjs: ^1.11.5
+  debounce: ^1.2.1
   eslint: ^8.21.0
   eslint-plugin-vue: ^9.3.0
   npm-run-all: ^4.1.5
@@ -55,6 +57,7 @@ dependencies:
   chrono-node: 2.4.1
   css-loader: 6.7.1_webpack@5.74.0
   dayjs: 1.11.5
+  debounce: 1.2.1
   numeral: 2.0.6
   pinia: 2.0.21_fl6vay66s5mfyioevoftbjhvcm
   vite-plugin-require: 1.0.1_vc7sl4lqpi5rcavnn7i3yvbp4u
@@ -64,6 +67,7 @@ dependencies:
 devDependencies:
   '@rushstack/eslint-patch': 1.1.4
   '@types/bootstrap': 5.2.3
+  '@types/debounce': 1.2.1
   '@types/node': 16.11.56
   '@types/numeral': 2.0.2
   '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.38
@@ -552,6 +556,10 @@ packages:
     resolution: {integrity: sha512-r2SE9NYaaI7B/jJk8gqRtXzlhgFL6dlXBResJkCbQa8ept619WeiOIO4zBQxdmUFzkKNWLK5ZOyYGI3QZoaqbQ==}
     dependencies:
       '@popperjs/core': 2.11.6
+    dev: true
+
+  /@types/debounce/1.2.1:
+    resolution: {integrity: sha512-epMsEE85fi4lfmJUH/89/iV/LI+F5CvNIvmgs5g5jYFPfhO2S/ae8WSsLOKWdwtoaZw9Q2IhJ4tQ5tFCcS/4HA==}
     dev: true
 
   /@types/eslint-scope/3.7.4:
@@ -1561,6 +1569,10 @@ packages:
 
   /dayjs/1.11.5:
     resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
+    dev: false
+
+  /debounce/1.2.1:
+    resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
     dev: false
 
   /debug/4.3.4:

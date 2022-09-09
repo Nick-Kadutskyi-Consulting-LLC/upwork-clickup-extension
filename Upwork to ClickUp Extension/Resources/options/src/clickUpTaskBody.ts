@@ -18,7 +18,6 @@ export const replaceFields = (fieldMarkup: { type: ClFieldType, markup: string }
         }) : ""
 }
 export const prepClickUpBody = (jobPosting: JobPosting, markup: { [key: string]: { type: ClFieldType, markup: string } }) => {
-    console.log('prepClickUpBody', jobPosting, markup)
     const customFields: ClickUpCustomField[] = Object.keys(markup).reduce<{ id: string, value: string }[]>((carry, id) => {
         if (!['task.name', 'task.description', 'task.due_date', 'task.start_date'].includes(id)) {
             carry.push({
@@ -28,7 +27,6 @@ export const prepClickUpBody = (jobPosting: JobPosting, markup: { [key: string]:
         }
         return carry
     }, [])
-    console.log(customFields)
     const task: ClickUpTask = {
         "name": replaceFields(markup?.["task.name"], jobPosting),
         "description": replaceFields(markup?.["task.description"], jobPosting),
@@ -46,6 +44,5 @@ export const prepClickUpBody = (jobPosting: JobPosting, markup: { [key: string]:
         // }]
         "custom_fields": customFields
     }
-    console.log(task)
     return task
 }
