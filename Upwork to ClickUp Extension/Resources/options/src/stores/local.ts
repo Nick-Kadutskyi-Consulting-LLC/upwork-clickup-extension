@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 import {computed, ref, watch} from "vue";
 import type {Ref} from "vue";
 import {storageGet, storageSetKey} from "@/localStorage";
-import type {ClFieldType, ClList, LocalStore} from "@/types";
+import type {ClFieldType, ClList, JobSentToClickUp, LocalStore} from "@/types";
 import apiClient from "@/apiClient";
 import {STANDARD_CU_FIELDS} from "@/config";
 
@@ -15,7 +15,7 @@ export const useLocalStore = defineStore('local', () => {
     const getById = computed(
         () => (id: string) => availableFieldsInList.value?.length > 0 ? availableFieldsInList.value.find((cf) => cf.id === id) : undefined
     )
-    const upworkJobsSentToClickUp: Ref<string[]> = ref([])
+    const upworkJobsSentToClickUp: Ref<JobSentToClickUp[]> = ref([])
     const patched: Ref<boolean> = ref(false)
 
     const taskFieldMarkup: Ref<{ [key: string]: { type: ClFieldType, markup: string } }> = ref({})
