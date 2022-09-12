@@ -17,6 +17,7 @@ const config = {
     },
 };
 
+// @ts-ignore
 const currentConfig = config[process.env.LIB_NAME || "other"];
 
 if (currentConfig === undefined) {
@@ -48,7 +49,8 @@ export default defineConfig({
             },
             output: {
                 entryFileNames: (chunkInfo) => chunkInfo.name + ".js",
-            }
+            },
+            external: ['/browser-polyfill.js']
         }
     },
     assetsInclude: ['**/*.woff', '**/*.woff2']

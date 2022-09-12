@@ -1,6 +1,9 @@
 import dayjs from "dayjs";
-import {storageGet} from "@/localStorage";
-import type {LocalStore} from "@/types";
+import {storageGet, storageSet} from "@/localStorage";
+import type {JobPosting, JobSentToClickUp, LocalStore} from "@/types";
+import {getJobUniqueId} from "@/scrapper";
+import {prepClickUpBody} from "@/clickUpTaskBody";
+import type {Tabs} from "webextension-polyfill";
 
 export const convertArrayToObject = (array: [], key: string) => {
     const initialValue = {};
@@ -32,7 +35,7 @@ export const pasteHtmlAtCaret = (html: string, selectPastedContent: boolean = tr
             }
             let firstNode = frag.firstChild;
             if (parentCont?.parentElement === container) {
-                if (parentCont?.className?.includes("html-includable")) {
+                if (parentCont?.parentElement?.className?.includes("html-includable")) {
                     if (sel?.anchorNode === parentCont?.childNodes[0]) {
                         parentCont?.parentNode?.insertBefore(frag, sel?.anchorNode.parentNode)
                     } else if (sel?.anchorNode === parentCont?.childNodes[2]) {
@@ -107,42 +110,159 @@ export const addDollarSign = (sum: number) => `$${sum}`
 
 export const labelSavedJobs = (jobs: NodeListOf<HTMLElement>) => {
     storageGet().then((stored: LocalStore) => {
-            const savedJobs = stored.upworkJobsSentToClickUp
-            if (savedJobs.length > 0) {
-                for (let i = 0; i < jobs?.length; i++) {
-                    const job = jobs[i]
-                    const hasClickUpLink = job.querySelector('.cl-link')
-                    const link = job.querySelector('.job-tile-title a')?.getAttribute('href')
-                    if (link && !hasClickUpLink) {
-                        const savedJob = savedJobs.find(j => link?.indexOf(j.job_id) >= 0)
-                        if (savedJob) {
-                            const actions = job.querySelector<HTMLElement>('.job-tile-actions')
-                            if (actions) {
-                                actions.style.width = '130px'
+        const savedJobs = stored.upworkJobsSentToClickUp
+        if (savedJobs != undefined && savedJobs.length > 0) {
+            for (let i = 0; i < jobs?.length; i++) {
+                const job = jobs[i]
+                const hasClickUpLink = job.querySelector('.cl-link')
+                const link = job.querySelector('.job-tile-title a')?.getAttribute('href')
+                if (link && !hasClickUpLink) {
+                    const savedJob = savedJobs.find(j => link?.indexOf(j.job_id) >= 0)
+                    if (savedJob) {
+                        const actions = job.querySelector<HTMLElement>('.job-tile-actions')
+                        if (actions) {
+                            actions.style.width = '130px'
 
-                                const clLink = document.createElement('a')
-                                clLink.href = savedJob.task_url
-                                clLink.target = "_blank"
-                                clLink.className = "up-btn up-btn-default up-btn-circle cl-link"
-                                clLink.addEventListener('click', (e) => {
-                                    e.preventDefault()
-                                    e.stopPropagation()
-                                    window.open(savedJob.task_url, '_blank')
-                                })
+                            const clLink = document.createElement('a')
+                            clLink.href = savedJob.task_url
+                            clLink.target = "_blank"
+                            clLink.className = "up-btn up-btn-default up-btn-circle cl-link"
+                            clLink.addEventListener('click', (e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                window.open(savedJob.task_url, '_blank')
+                            })
 
-                                const image = document.createElement("img");
-                                image.src = browser.runtime.getURL("images/cl-icon.png");
-                                image.className = "clickup-icon"
-                                image.style.width = '100%'
-                                image.style.marginTop = '1px'
+                            const image = document.createElement("img");
+                            image.src = browser.runtime.getURL("images/cl-icon.png");
+                            image.className = "clickup-icon"
+                            image.style.width = '100%'
+                            image.style.marginTop = '1px'
 
-                                clLink.appendChild(image)
-                                actions.appendChild(clLink)
+                            clLink.appendChild(image)
+                            actions.appendChild(clLink)
 
-                            }
                         }
                     }
                 }
             }
+        }
+    })
+}
+
+export const isJobSaved = (uniqueId: string): Promise<JobSentToClickUp | undefined> => {
+    return storageGet().then((stored: LocalStore) => {
+        const savedJobs = stored?.upworkJobsSentToClickUp
+        if (savedJobs != undefined && savedJobs.length > 0) {
+            return savedJobs.find(j => j.job_id === uniqueId)
+        } else {
+            return undefined
+        }
+    })
+}
+
+export const canSaveJobs = () => {
+    return storageGet().then((stored: LocalStore) => {
+        const apiKey = stored?.clickUpApiToken
+        const list = stored?.clickUpListToSaveJobs
+        if (list && apiKey) {
+            return true
+        } else {
+            return false
+        }
+    })
+}
+
+export const setIcon = (tabId: number, windowId: number, url: string) => {
+    const uniqueId = getJobUniqueId(url)
+    if (!uniqueId) {
+        browser.browserAction.disable(tabId).then()
+        return browser.browserAction.setIcon({path: '/images/disabled-48x48@1x.png', tabId, windowId})
+    } else {
+        return isJobSaved(uniqueId).then(savedJob => {
+            if (savedJob) {
+                browser.browserAction.enable(tabId).then()
+                return browser.browserAction.setIcon({path: '/images/link-48x48@1x.png', tabId, windowId})
+            } else {
+                return canSaveJobs().then((canSave: boolean) => {
+                    if (canSave) {
+                        browser.browserAction.enable(tabId).then()
+                    } else {
+                        browser.browserAction.disable(tabId).then()
+                    }
+                    return browser.browserAction.setIcon({path: '/images/add-48x48@1x.png', tabId, windowId})
+                })
+            }
         })
+    }
+}
+
+export const resetAllIcons = () => {
+    browser.tabs.query({}).then((tabs) => {
+        for (let i = 0; i < tabs.length; ++i) {
+            const tabId = tabs?.[i]?.id
+            if (tabId !== undefined) {
+                browser.tabs.sendMessage(tabId, {action: "RESET_ALL_ICONS"}).then()
+            }
+        }
+    })
+}
+
+export const saveJob = (jobPosting: JobPosting, tab: Tabs.Tab) => {
+    storageGet().then((stored: LocalStore) => {
+        const apiKey = stored?.clickUpApiToken
+        const list = stored?.clickUpListToSaveJobs
+        if (list && apiKey) {
+            browser.browserAction.disable(tab.id).then()
+            browser.browserAction.setIcon({
+                tabId: tab.id,
+                path: '/images/loading-48x48@1x.png'
+            }).then()
+            fetch(`https://api.clickup.com/api/v2/list/${list?.id}/task`, {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    Authorization: apiKey
+                },
+                body: JSON.stringify(prepClickUpBody(jobPosting, stored?.taskFieldMarkup))
+            })
+                .then(r => r?.json())
+                .then(task => {
+                    if (!Array.isArray(stored?.upworkJobsSentToClickUp)) {
+                        stored.upworkJobsSentToClickUp = []
+                    }
+                    stored.upworkJobsSentToClickUp.push({
+                        task_id: task?.id,
+                        task_title: task?.name,
+                        task_url: task?.url,
+                        job_id: jobPosting["Job Unique ID"],
+                        job_title: jobPosting["Job Name"],
+                        job_date_posted: jobPosting["Date Posted"]
+                    })
+                    storageSet(stored)?.then(() => {
+                        resetAllIcons()
+                    })
+                })
+                .catch((e: any) => {
+                    console.error('Error during sending job to ClickUp', e)
+                })
+        } else {
+            // todo show error that list is not selected
+            console.error('List to save jobs is not selected or apiKey is not set.')
+        }
+    }, (e: Error) => {
+        console.error(e)
+    })
+}
+
+export const updateContextMenus = (tab: Tabs.Tab) => {
+    const uniqueId = getJobUniqueId(tab.url)
+    if (!!uniqueId) {
+        browser.contextMenus.update('save-job', {enabled: true}).then()
+    } else {
+        browser.contextMenus.update('save-job', {enabled: false}).then()
+    }
 }

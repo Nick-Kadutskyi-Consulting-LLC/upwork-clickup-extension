@@ -1,5 +1,5 @@
 <template>
-  <h5>Match with fields in ClickUp Task</h5>
+  <h4>Match with fields in ClickUp Task</h4>
   <div>
     <FormEditableField v-for="field in fields" :key="field?.id || field?.name" :customField="field"/>
   </div>
