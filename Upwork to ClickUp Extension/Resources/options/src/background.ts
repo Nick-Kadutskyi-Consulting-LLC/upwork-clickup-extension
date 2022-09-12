@@ -1,7 +1,7 @@
 import {storageGet, storageSet} from "@/localStorage";
 import type {LocalStore} from "@/types";
 import {prepClickUpBody} from "@/clickUpTaskBody";
-import {isJobSaved, resetAllIcons, setIcon} from "@/utils";
+import {isJobSaved, resetAllIcons, saveJob, setIcon, updateContextMenus} from "@/utils";
 import type {Runtime, Tabs} from "webextension-polyfill";
 import {getJobUniqueId} from "@/scrapper";
 
@@ -10,12 +10,32 @@ browser.contextMenus.create({
     title: "Preferences",
     contexts: ['browser_action'],
 })
+browser.contextMenus.create({
+    id: "save-job",
+    title: "Save to ClickUp",
+    contexts: ['browser_action'],
+    enabled: true,
+})
+
+browser.tabs.onUpdated.addListener((tabId: number, changeInfo, tab) => {
+    updateContextMenus(tab)
+})
+
+
 browser.contextMenus.onClicked.addListener((info, tab) => {
     switch (info.menuItemId) {
         case "go-to-preferences":
-            console.log(info.selectionText);
             browser.runtime.openOptionsPage().then()
             break;
+        case "save-job":
+            if (tab?.id !== undefined) {
+                browser.tabs
+                    .sendMessage(tab.id, {action: "PARSE_JOB_POSTING"})
+                    .then((response: any) => {
+                        saveJob(response.jobPosting, tab)
+                    })
+            }
+            break
         default:
     }
 })
@@ -25,6 +45,9 @@ browser.runtime.onMessage.addListener((request: any, sender: Runtime.MessageSend
     return new Promise((resolve, reject) => {
         switch (request?.action) {
             case "LOCATION_CHANGED":
+                if (sender?.tab !== undefined) {
+                    updateContextMenus(sender?.tab)
+                }
             case "RESET_ICON":
                 if (sender?.tab?.id !== undefined && sender?.tab?.windowId != undefined) {
                     setIcon(sender.tab.id, sender.tab.windowId, request.data.location.href)
@@ -69,58 +92,11 @@ browser.browserAction.onClicked.addListener(function (tab: Tabs.Tab) {
             if (savedJob) {
                 window.open(savedJob.task_url, '_blank')
             } else {
-                if (tab.id !== undefined) {
+                if (tab?.id !== undefined) {
                     browser.tabs
                         .sendMessage(tab.id, {action: "PARSE_JOB_POSTING"})
                         .then((response: any) => {
-                            storageGet().then((stored: LocalStore) => {
-                                const apiKey = stored?.clickUpApiToken
-                                const list = stored?.clickUpListToSaveJobs
-                                if (list && apiKey) {
-                                    browser.browserAction.disable(tab.id).then()
-                                    browser.browserAction.setIcon({
-                                        tabId: tab.id,
-                                        path: '/images/loading-48x48@1x.png'
-                                    }).then()
-                                    fetch(`https://api.clickup.com/api/v2/list/${list?.id}/task`, {
-                                        method: 'POST',
-                                        credentials: 'same-origin',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            Accept: 'application/json',
-                                            'X-Requested-With': 'XMLHttpRequest',
-                                            Authorization: apiKey
-                                        },
-                                        body: JSON.stringify(prepClickUpBody(response.jobPosting, stored?.taskFieldMarkup))
-                                    })
-                                        .then(r => r?.json())
-                                        .then(task => {
-                                            if (!Array.isArray(stored?.upworkJobsSentToClickUp)) {
-                                                stored.upworkJobsSentToClickUp = []
-                                            }
-                                            stored.upworkJobsSentToClickUp.push({
-                                                task_id: task?.id,
-                                                task_title: task?.name,
-                                                task_url: task?.url,
-                                                job_id: response.jobPosting["Job Unique ID"],
-                                                job_title: response.jobPosting["Job Name"],
-                                                job_date_posted: response.jobPosting["Date Posted"]
-                                            })
-                                            storageSet(stored)?.then(() => {
-                                                resetAllIcons()
-                                            })
-                                        })
-                                        .catch((e: any) => {
-                                            console.error('Error during sending job to ClickUp', e)
-                                        })
-                                } else {
-                                    // todo show error that list is not selected
-                                    console.error('List to save jobs is not selected or apiKey is not set.')
-                                }
-                            }, (e: Error) => {
-                                console.error(e)
-                            })
-
+                            saveJob(response.jobPosting, tab)
                         })
                 }
             }

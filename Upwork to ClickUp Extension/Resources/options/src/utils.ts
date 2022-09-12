@@ -1,7 +1,9 @@
 import dayjs from "dayjs";
-import {storageGet} from "@/localStorage";
-import type {JobSentToClickUp, LocalStore} from "@/types";
+import {storageGet, storageSet} from "@/localStorage";
+import type {JobPosting, JobSentToClickUp, LocalStore} from "@/types";
 import {getJobUniqueId} from "@/scrapper";
+import {prepClickUpBody} from "@/clickUpTaskBody";
+import type {Tabs} from "webextension-polyfill";
 
 export const convertArrayToObject = (array: [], key: string) => {
     const initialValue = {};
@@ -204,4 +206,63 @@ export const resetAllIcons = () => {
             }
         }
     })
+}
+
+export const saveJob = (jobPosting: JobPosting, tab: Tabs.Tab) => {
+    storageGet().then((stored: LocalStore) => {
+        const apiKey = stored?.clickUpApiToken
+        const list = stored?.clickUpListToSaveJobs
+        if (list && apiKey) {
+            browser.browserAction.disable(tab.id).then()
+            browser.browserAction.setIcon({
+                tabId: tab.id,
+                path: '/images/loading-48x48@1x.png'
+            }).then()
+            fetch(`https://api.clickup.com/api/v2/list/${list?.id}/task`, {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    Authorization: apiKey
+                },
+                body: JSON.stringify(prepClickUpBody(jobPosting, stored?.taskFieldMarkup))
+            })
+                .then(r => r?.json())
+                .then(task => {
+                    if (!Array.isArray(stored?.upworkJobsSentToClickUp)) {
+                        stored.upworkJobsSentToClickUp = []
+                    }
+                    stored.upworkJobsSentToClickUp.push({
+                        task_id: task?.id,
+                        task_title: task?.name,
+                        task_url: task?.url,
+                        job_id: jobPosting["Job Unique ID"],
+                        job_title: jobPosting["Job Name"],
+                        job_date_posted: jobPosting["Date Posted"]
+                    })
+                    storageSet(stored)?.then(() => {
+                        resetAllIcons()
+                    })
+                })
+                .catch((e: any) => {
+                    console.error('Error during sending job to ClickUp', e)
+                })
+        } else {
+            // todo show error that list is not selected
+            console.error('List to save jobs is not selected or apiKey is not set.')
+        }
+    }, (e: Error) => {
+        console.error(e)
+    })
+}
+
+export const updateContextMenus = (tab: Tabs.Tab) => {
+    const uniqueId = getJobUniqueId(tab.url)
+    if (!!uniqueId) {
+        browser.contextMenus.update('save-job', {enabled: true}).then()
+    } else {
+        browser.contextMenus.update('save-job', {enabled: false}).then()
+    }
 }

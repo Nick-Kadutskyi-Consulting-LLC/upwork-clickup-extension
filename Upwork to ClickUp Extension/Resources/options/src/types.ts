@@ -99,15 +99,15 @@ export enum ClFieldTypeInt {
 }
 
 export interface JobPosting {
-    "Job Name"?: string;
+    "Job Name": string;
     "Job Description"?: string;
     "Payment Verified"?: boolean;
-    "Job Unique ID"?: string;
+    "Job Unique ID": string;
     "Job URL"?: string;
     "Job Country"?: string;
     "Job City"?: string;
     "Job Type"?: "fixed-price" | "hourly";
-    "Date Posted"?: number;
+    "Date Posted": number;
     "Budget"?: number;
     "Total Spent"?: number
 }

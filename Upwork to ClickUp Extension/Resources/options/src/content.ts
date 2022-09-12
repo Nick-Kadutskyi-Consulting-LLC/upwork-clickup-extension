@@ -28,15 +28,15 @@ browser.runtime.onMessage.addListener((request: any, sender: Runtime.MessageSend
 
 const parseJobPosting = () => {
     const jobPosting: JobPosting = {
-        "Job Name": Scrapper.getTitle(),
+        "Job Name": Scrapper.getTitle() || "",
         "Job Description": Scrapper.getDescription(),
         "Payment Verified": Scrapper.getPaymentVerificationStatus(),
-        "Job Unique ID": Scrapper.getJobUniqueId(),
+        "Job Unique ID": Scrapper.getJobUniqueId() || "",
         "Job URL": Scrapper.getJobUrl(),
         "Job Country": Scrapper.getCountry(),
         "Job City": Scrapper.getCity(),
         "Job Type": Scrapper.getJobType(),
-        "Date Posted": Scrapper.getDatePosted(),
+        "Date Posted": Scrapper.getDatePosted() || Date.now(),
         "Budget": Scrapper.getBudget(),
         "Total Spent": Scrapper.getTotalSpent()
     }
@@ -62,7 +62,9 @@ const onLocationChanged = () => {
     if (jobsContainer?.querySelectorAll('section')) {
         labelSavedJobs(jobsContainer?.querySelectorAll('section'))
     }
-    sendLocationChanged()
+    setTimeout(() => {
+        sendLocationChanged()
+    }, 1000)
 }
 
 const onJobsLoaded = debounce(() => {
