@@ -20,6 +20,7 @@ import {
     faDollar
 } from '@fortawesome/free-solid-svg-icons'
 
+browser.runtime.sendMessage({action: "DISABLE_ACTION_ON_START"}).then();
 
 window.bootstrap = bootstrap
 
@@ -37,17 +38,11 @@ const local = useLocalStore()
 storageGet().then((state: LocalStore) => {
     // @ts-ignore
     local.$patch({
-        // @ts-ignore
         clickUpApiToken: "",
-        // @ts-ignore
         clickUpListToSaveJobs: null,
-        // @ts-ignore
         availableFieldsInList: [],
-        // @ts-ignore
         upworkJobsSentToClickUp: [],
-        // @ts-ignore
         taskFieldMarkup: {},
-        // @ts-ignore
         patched: true,
         ...state
     })

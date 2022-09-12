@@ -42,9 +42,9 @@ export const getPaymentVerificationStatus = () => {
         return false
     }
 }
-export const getJobUniqueId = (): string | undefined => {
+export const getJobUniqueId = (url?: string): string | undefined => {
     try {
-        const match = window.location.href.match(/~(.{18})/);
+        const match = (url !== undefined ? url : window.location.href).match(/~(.{18})/);
         const jId = match ? match[1] : undefined;
 
         return jId;

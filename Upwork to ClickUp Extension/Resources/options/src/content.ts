@@ -1,22 +1,27 @@
 import * as Scrapper from "./scrapper"
 import type {JobPosting, LocalStore} from "@/types";
 import debounce from "debounce";
-import {storageGet} from "@/localStorage";
 import {labelSavedJobs} from "@/utils";
-/* global browser */
-// browser.runtime.sendMessage({greeting: "hello"}).then((response: Response) => {
-//     console.log("Received response: ", response);
-// });
+import type {Runtime} from "webextension-polyfill";
 
-browser.runtime.onMessage.addListener((request: any, sender: any, sendResponse: any) => {
-    console.log("Received request: ", request);
-    if (request.action === 'PARSE_JOB_POSTING') {
-        const jobPosting = parseJobPosting()
-        sendResponse({jobPosting});
-    }
+browser.runtime.sendMessage({action: "DISABLE_ACTION_ON_START"}).then();
+
+browser.runtime.onMessage.addListener((request: any, sender: Runtime.MessageSender) => {
+    return new Promise((resolve, reject) => {
+        switch (request?.action) {
+            case "PARSE_JOB_POSTING":
+                const jobPosting = parseJobPosting()
+                resolve({jobPosting});
+                break
+            default:
+                reject(
+                    request?.action === undefined
+                        ? "No action provided"
+                        : "No such action " + request?.action
+                )
+        }
+    })
 });
-
-// document.body.style.border = "5px solid red";
 
 const parseJobPosting = () => {
     const jobPosting: JobPosting = {
@@ -37,6 +42,11 @@ const parseJobPosting = () => {
 
 const jobsContainer = document.querySelector('[data-test="job-tile-list"]')
 
+const sendLocationChanged = () => browser.runtime.sendMessage({
+    action: "LOCATION_CHANGED",
+    data: {location: document.location}
+})
+
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         if (jobsContainer?.querySelectorAll('section')) {
@@ -49,6 +59,7 @@ const onLocationChanged = () => {
     if (jobsContainer?.querySelectorAll('section')) {
         labelSavedJobs(jobsContainer?.querySelectorAll('section'))
     }
+    sendLocationChanged()
 }
 
 const onJobsLoaded = debounce(() => {
@@ -64,6 +75,7 @@ window.onload = function () {
     if (jobsContainer?.querySelectorAll('section')) {
         labelSavedJobs(jobsContainer?.querySelectorAll('section'))
     }
+    sendLocationChanged()
 
     let bodyList = document.querySelector("body") as Node
 

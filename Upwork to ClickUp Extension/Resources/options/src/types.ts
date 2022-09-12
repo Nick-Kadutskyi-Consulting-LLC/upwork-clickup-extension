@@ -1,6 +1,7 @@
+import type {Browser} from "webextension-polyfill";
+
 declare global {
-    const browser: any
-    const chrome: any
+    const browser: Browser
 
     interface Window {
         bootstrap: any;
@@ -49,13 +50,13 @@ export interface JobSentToClickUp {
     job_date_posted: number;
 }
 
-export interface LocalStore {
-    clickUpApiToken: string;
-    clickUpListToSaveJobs: ClList | undefined | null;
-    availableFieldsInList: any[];
-    upworkJobsSentToClickUp: JobSentToClickUp[];
-    taskFieldMarkup: { [key: string]: { type: ClFieldType, markup: string } };
-    patched: boolean;
+export interface LocalStore extends Record<string, any> {
+    clickUpApiToken?: string;
+    clickUpListToSaveJobs?: ClList | undefined | null;
+    availableFieldsInList?: any[];
+    upworkJobsSentToClickUp?: JobSentToClickUp[];
+    taskFieldMarkup?: { [key: string]: { type: ClFieldType, markup: string } };
+    patched?: boolean;
 }
 
 export type ClFieldType =
@@ -117,7 +118,7 @@ export interface ClickUpCustomField {
 }
 
 export interface ClickUpTask {
-    name: string;
+    name?: string;
     description?: string;
     tags?: string[];
     priority?: number;
