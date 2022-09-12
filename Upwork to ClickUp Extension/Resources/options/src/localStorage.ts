@@ -1,6 +1,8 @@
 import type {LocalStore} from "@/types";
 import {useLocalStore} from "@/stores/local";
-/* global browser */
+// @ts-ignore
+import _ from 'lodash'
+
 export const storageSetKey = (key: keyof LocalStore, value: any, onError?: Function) => {
     storageGet().then((stored: any) => {
         if (typeof stored !== 'object') {
@@ -16,11 +18,14 @@ export const storageSetKey = (key: keyof LocalStore, value: any, onError?: Funct
         }
     })
 }
-
 export const storageSet = (obj: any) => {
-    return (typeof browser !== "undefined" ? browser : chrome)?.storage?.local?.set(Object.assign({}, obj))
-}
+    const manageObj = _.cloneDeep(obj)
+    const toStore = _.pickBy(manageObj, (val, key) => val !== undefined && val !== null)
+    const toRemoveKeys = _.keys(_.pickBy(manageObj, (val, key) => val === undefined || val === null))
 
-export const storageGet = () => {
-    return (typeof browser !== "undefined" ? browser : chrome)?.storage?.local?.get() || Promise.resolve()
+    return Promise.all([
+        toRemoveKeys.length > 0 ? browser.storage.local?.remove(toRemoveKeys) : true,
+        browser.storage.local?.set(toStore)
+    ])
 }
+export const storageGet = () => browser.storage.local?.get() || Promise.resolve(undefined)

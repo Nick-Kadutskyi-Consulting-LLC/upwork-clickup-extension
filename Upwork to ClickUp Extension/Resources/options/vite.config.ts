@@ -17,7 +17,8 @@ const config = {
     },
 };
 
-const currentConfig = config[process.env.LIB_NAME];
+// @ts-ignore
+const currentConfig = config[process.env.LIB_NAME || "other"];
 
 if (currentConfig === undefined) {
     throw new Error('LIB_NAME is not defined or is not valid');
@@ -48,7 +49,8 @@ export default defineConfig({
             },
             output: {
                 entryFileNames: (chunkInfo) => chunkInfo.name + ".js",
-            }
+            },
+            external: ['/browser-polyfill.js']
         }
     },
     assetsInclude: ['**/*.woff', '**/*.woff2']
