@@ -1,6 +1,7 @@
 <template>
   <main class="container">
     <h2>Upwork to ClickUp Extension Preferences:</h2>
+    <FormClear/>
     <FormApiKey/>
     <div class="row">
       <div class="col">
@@ -16,6 +17,7 @@
 import FormApiKey from '@/components/FormApiKey.vue'
 import FormListSelect from '@/components/FormListSelect.vue'
 import FormMatchFields from '@/components/FormMatchFields.vue'
+import FormClear from '@/components/FormClear.vue'
 </script>
 
 <style lang="scss">
