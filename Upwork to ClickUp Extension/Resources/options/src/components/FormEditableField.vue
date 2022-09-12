@@ -25,9 +25,8 @@
            :id="customField.id"
            :contenteditable="!disabled && !['date', 'checkbox', 'number', 'currency'].includes(customField.type)"
            ref="input"
-           @input="event => onInput(event)"
            @keyup.delete="onRemove()"
-           @keyup="checkCaret"
+           @keyup="(event)=>{onInput(event); checkCaret()}"
            @keydown.enter.prevent=""
       ></div>
       <button

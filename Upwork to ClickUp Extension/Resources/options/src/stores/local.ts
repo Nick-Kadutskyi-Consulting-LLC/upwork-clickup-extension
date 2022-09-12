@@ -5,9 +5,10 @@ import {storageGet, storageSetKey} from "@/localStorage";
 import type {ClFieldType, ClList, JobSentToClickUp, LocalStore} from "@/types";
 import apiClient from "@/apiClient";
 import {STANDARD_CU_FIELDS} from "@/config";
+import {resetAllIcons} from "@/utils";
 
 export const useLocalStore = defineStore('local', () => {
-    const clickUpApiToken: Ref<string> = ref("")
+    const clickUpApiToken: Ref<string | undefined | null> = ref(undefined)
     const clickUpListToSaveJobs: Ref<undefined | ClList | null> = ref(undefined)
     const availableFieldsInList: Ref<any[]> = ref([])
     const filteredFieldsByTypeInList = computed(
@@ -20,12 +21,14 @@ export const useLocalStore = defineStore('local', () => {
 
     const taskFieldMarkup: Ref<{ [key: string]: { type: ClFieldType, markup: string } }> = ref({})
 
-    function setClickUpApiToken(token: string) {
+    function setClickUpApiToken(token?: string | null) {
         clickUpApiToken.value = token
+        resetAllIcons()
     }
 
-    function setClickUpListToSaveJobs(list: ClList) {
+    function setClickUpListToSaveJobs(list?: ClList | null | undefined) {
         clickUpListToSaveJobs.value = list
+        resetAllIcons()
     }
 
     function fetchAccessibleCustomFields() {

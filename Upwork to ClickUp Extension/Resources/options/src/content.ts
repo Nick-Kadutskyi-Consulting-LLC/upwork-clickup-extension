@@ -13,6 +13,9 @@ browser.runtime.onMessage.addListener((request: any, sender: Runtime.MessageSend
                 const jobPosting = parseJobPosting()
                 resolve({jobPosting});
                 break
+            case "RESET_ALL_ICONS":
+                browser.runtime.sendMessage({action: "RESET_ICON", data: {location: document.location}}).then();
+                break
             default:
                 reject(
                     request?.action === undefined

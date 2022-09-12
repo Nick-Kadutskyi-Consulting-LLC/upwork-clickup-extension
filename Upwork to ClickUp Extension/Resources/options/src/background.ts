@@ -1,7 +1,7 @@
 import {storageGet, storageSet} from "@/localStorage";
 import type {LocalStore} from "@/types";
 import {prepClickUpBody} from "@/clickUpTaskBody";
-import {isJobSaved, setIcon} from "@/utils";
+import {isJobSaved, resetAllIcons, setIcon} from "@/utils";
 import type {Runtime, Tabs} from "webextension-polyfill";
 import {getJobUniqueId} from "@/scrapper";
 
@@ -10,6 +10,7 @@ browser.runtime.onMessage.addListener((request: any, sender: Runtime.MessageSend
     return new Promise((resolve, reject) => {
         switch (request?.action) {
             case "LOCATION_CHANGED":
+            case "RESET_ICON":
                 if (sender?.tab?.id !== undefined && sender?.tab?.windowId != undefined) {
                     setIcon(sender.tab.id, sender.tab.windowId, request.data.location.href)
                         .then(() => {
@@ -91,9 +92,7 @@ browser.browserAction.onClicked.addListener(function (tab: Tabs.Tab) {
                                                 job_date_posted: response.jobPosting["Date Posted"]
                                             })
                                             storageSet(stored)?.then(() => {
-                                                if (tab.id !== undefined && tab.windowId !== undefined && tab.url !== undefined) {
-                                                    setIcon(tab.id, tab.windowId, tab.url).then()
-                                                }
+                                                resetAllIcons()
                                             })
                                         })
                                         .catch((e: any) => {

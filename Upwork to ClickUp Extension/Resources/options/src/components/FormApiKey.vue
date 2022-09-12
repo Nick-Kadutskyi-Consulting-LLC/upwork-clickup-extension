@@ -1,6 +1,6 @@
 <template>
   <div class="mb-3">
-    <label for="clApiToken" class="form-label">ClickUp API Key</label>
+    <label for="clApiToken" class="form-label fs-5">ClickUp API Key</label>
     <div class="input-group mb-3">
       <input
           v-model="apiKey"
@@ -31,13 +31,14 @@
 
 <script setup lang="ts">
 import {computed, ref, watch} from "vue";
+import type {Ref} from "vue"
 import {useLocalStore} from "@/stores/local";
 import type {LocalStore} from "@/types";
 
 const local = useLocalStore()
 const storedApiKey = computed(() => local.$state.clickUpApiToken)
 
-const apiKey = ref("")
+const apiKey: Ref<string | undefined | null> = ref("")
 
 watch(storedApiKey, key => {
   apiKey.value = key
@@ -47,7 +48,7 @@ const storeApiKey = () => {
   local.setClickUpApiToken(apiKey.value)
 }
 const clearApiKey = () => {
-  local.setClickUpApiToken("")
+  local.setClickUpApiToken(undefined)
 }
 </script>
 

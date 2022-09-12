@@ -38,7 +38,7 @@ const local = useLocalStore()
 storageGet().then((state: LocalStore) => {
     // @ts-ignore
     local.$patch({
-        clickUpApiToken: "",
+        clickUpApiToken: null,
         clickUpListToSaveJobs: null,
         availableFieldsInList: [],
         upworkJobsSentToClickUp: [],

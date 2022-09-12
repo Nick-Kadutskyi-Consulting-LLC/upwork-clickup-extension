@@ -159,6 +159,18 @@ export const isJobSaved = (uniqueId: string): Promise<JobSentToClickUp | undefin
     })
 }
 
+export const canSaveJobs = () => {
+    return storageGet().then((stored: LocalStore) => {
+        const apiKey = stored?.clickUpApiToken
+        const list = stored?.clickUpListToSaveJobs
+        if (list && apiKey) {
+            return true
+        } else {
+            return false
+        }
+    })
+}
+
 export const setIcon = (tabId: number, windowId: number, url: string) => {
     const uniqueId = getJobUniqueId(url)
     if (!uniqueId) {
@@ -170,9 +182,26 @@ export const setIcon = (tabId: number, windowId: number, url: string) => {
                 browser.browserAction.enable(tabId).then()
                 return browser.browserAction.setIcon({path: '/images/link-48x48@1x.png', tabId, windowId})
             } else {
-                browser.browserAction.enable(tabId).then()
-                return browser.browserAction.setIcon({path: '/images/add-48x48@1x.png', tabId, windowId})
+                return canSaveJobs().then((canSave: boolean) => {
+                    if (canSave) {
+                        browser.browserAction.enable(tabId).then()
+                    } else {
+                        browser.browserAction.disable(tabId).then()
+                    }
+                    return browser.browserAction.setIcon({path: '/images/add-48x48@1x.png', tabId, windowId})
+                })
             }
         })
     }
+}
+
+export const resetAllIcons = () => {
+    browser.tabs.query({}).then((tabs) => {
+        for (let i = 0; i < tabs.length; ++i) {
+            const tabId = tabs?.[i]?.id
+            if (tabId !== undefined) {
+                browser.tabs.sendMessage(tabId, {action: "RESET_ALL_ICONS"}).then()
+            }
+        }
+    })
 }
