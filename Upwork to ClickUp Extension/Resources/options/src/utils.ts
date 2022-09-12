@@ -261,7 +261,11 @@ export const saveJob = (jobPosting: JobPosting, tab: Tabs.Tab) => {
 export const updateContextMenus = (tab: Tabs.Tab) => {
     const uniqueId = getJobUniqueId(tab.url)
     if (!!uniqueId) {
-        browser.contextMenus.update('save-job', {enabled: true}).then()
+        canSaveJobs().then((canSave: boolean) => {
+            if (canSave) {
+                browser.contextMenus.update('save-job', {enabled: true}).then()
+            }
+        })
     } else {
         browser.contextMenus.update('save-job', {enabled: false}).then()
     }
