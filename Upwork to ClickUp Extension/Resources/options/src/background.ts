@@ -5,6 +5,21 @@ import {isJobSaved, resetAllIcons, setIcon} from "@/utils";
 import type {Runtime, Tabs} from "webextension-polyfill";
 import {getJobUniqueId} from "@/scrapper";
 
+browser.contextMenus.create({
+    id: "go-to-preferences",
+    title: "Preferences",
+    contexts: ['browser_action'],
+})
+browser.contextMenus.onClicked.addListener((info, tab) => {
+    switch (info.menuItemId) {
+        case "go-to-preferences":
+            console.log(info.selectionText);
+            browser.runtime.openOptionsPage().then()
+            break;
+        default:
+    }
+})
+
 browser.runtime.onMessage.addListener((request: any, sender: Runtime.MessageSender) => {
 
     return new Promise((resolve, reject) => {

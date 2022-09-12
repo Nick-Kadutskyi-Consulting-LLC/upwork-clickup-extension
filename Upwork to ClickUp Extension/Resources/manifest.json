@@ -37,7 +37,8 @@
   },
   "permissions": [
     "storage",
-    "https://api.clickup.com/*"
+    "https://api.clickup.com/*",
+    "contextMenus"
   ],
   "web_accessible_resources": [
     "images/cl-icon.png"
