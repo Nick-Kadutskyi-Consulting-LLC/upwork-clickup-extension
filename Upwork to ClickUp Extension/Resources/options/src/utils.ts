@@ -33,7 +33,7 @@ export const pasteHtmlAtCaret = (html: string, selectPastedContent: boolean = tr
             }
             let firstNode = frag.firstChild;
             if (parentCont?.parentElement === container) {
-                if (parentCont?.className?.includes("html-includable")) {
+                if (parentCont?.parentElement?.className?.includes("html-includable")) {
                     if (sel?.anchorNode === parentCont?.childNodes[0]) {
                         parentCont?.parentNode?.insertBefore(frag, sel?.anchorNode.parentNode)
                     } else if (sel?.anchorNode === parentCont?.childNodes[2]) {

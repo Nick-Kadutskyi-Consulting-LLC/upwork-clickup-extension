@@ -1,8 +1,8 @@
 <template>
-  <div class="mb-3" ref="fieldEl">
+  <div class="mb-4" ref="fieldEl">
     <label
         :for="customField.id"
-        class="form-label"
+        class="form-label fs-5"
         @click="input.focus()"
     >
       {{ customField.name }}
@@ -86,6 +86,10 @@ const addJobField = (field: JobFieldsDefinition) => {
   if (['date', 'checkbox', 'number', 'currency'].includes(customField.type)) {
     input.value.innerHTML = getTagHTML(field.name)
   } else {
+    if (document.activeElement !== input.value) {
+      input.value.focus()
+      selectElementContents(input.value.childNodes?.[input.value.childNodes?.length - 1], false)
+    }
     pasteHtmlAtCaret(getTagHTML(field.name), true, input.value)
   }
   local.setTaskFieldMarkup(input.value.childNodes, customField.id)
