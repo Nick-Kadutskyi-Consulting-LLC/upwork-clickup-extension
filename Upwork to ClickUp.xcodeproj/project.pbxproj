@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0174541928CE8FAC003C1EB7 /* browser-polyfill.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0174541728CE8FAC003C1EB7 /* browser-polyfill.min.js */; };
+		0174541B28CF2CAA003C1EB7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0174541A28CF2CAA003C1EB7 /* Icon.png */; };
 		0194207B28BE85DD0096E1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194207A28BE85DD0096E1BA /* AppDelegate.swift */; };
 		0194207F28BE85DD0096E1BA /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 0194207D28BE85DD0096E1BA /* Main.html */; };
-		0194208128BE85DD0096E1BA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0194208028BE85DD0096E1BA /* Icon.png */; };
 		0194208328BE85DD0096E1BA /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 0194208228BE85DD0096E1BA /* Style.css */; };
 		0194208528BE85DD0096E1BA /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 0194208428BE85DD0096E1BA /* Script.js */; };
 		0194208728BE85DD0096E1BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194208628BE85DD0096E1BA /* ViewController.swift */; };
@@ -52,10 +52,10 @@
 /* Begin PBXFileReference section */
 		0174541728CE8FAC003C1EB7 /* browser-polyfill.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "browser-polyfill.min.js"; path = "Upwork to ClickUp Extension/Resources/browser-polyfill.min.js"; sourceTree = "<group>"; };
 		0174541828CE8FAC003C1EB7 /* browser-polyfill.min.js.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = "browser-polyfill.min.js.map"; path = "Upwork to ClickUp Extension/Resources/browser-polyfill.min.js.map"; sourceTree = "<group>"; };
+		0174541A28CF2CAA003C1EB7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		0194207728BE85DD0096E1BA /* Upwork to ClickUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Upwork to ClickUp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0194207A28BE85DD0096E1BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0194207E28BE85DD0096E1BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
-		0194208028BE85DD0096E1BA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		0194208228BE85DD0096E1BA /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
 		0194208428BE85DD0096E1BA /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
 		0194208628BE85DD0096E1BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,8 +129,8 @@
 		0194207C28BE85DD0096E1BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0174541A28CF2CAA003C1EB7 /* Icon.png */,
 				0194207D28BE85DD0096E1BA /* Main.html */,
-				0194208028BE85DD0096E1BA /* Icon.png */,
 				0194208228BE85DD0096E1BA /* Style.css */,
 				0194208428BE85DD0096E1BA /* Script.js */,
 			);
@@ -241,7 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0194208128BE85DD0096E1BA /* Icon.png in Resources */,
+				0174541B28CF2CAA003C1EB7 /* Icon.png in Resources */,
 				0194208A28BE85DD0096E1BA /* Main.storyboard in Resources */,
 				0194208528BE85DD0096E1BA /* Script.js in Resources */,
 				0194207F28BE85DD0096E1BA /* Main.html in Resources */,
