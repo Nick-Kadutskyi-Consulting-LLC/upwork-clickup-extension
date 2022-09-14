@@ -9,14 +9,23 @@ import vitePluginRequire from "vite-plugin-require";
 
 const config = {
     options: {
-        index: resolve(__dirname, './index.html'),
+        "build.rollupOptions.input": {
+            index: resolve(__dirname, './index.html')
+        },
+        "build.outDir": "../preferences"
     },
     background: {
-        background: resolve(__dirname, './src/background.ts'),
+        "build.rollupOptions.input": {
+            index: resolve(__dirname, './src/background.ts')
+        },
+        "build.outDir": "../background"
     },
     content: {
-        content: resolve(__dirname, './src/content.ts'),
-    },
+        "build.rollupOptions.input": {
+            index: resolve(__dirname, './src/content.ts'),
+        },
+        "build.outDir": "../content"
+    }
 };
 
 // @ts-ignore
@@ -47,13 +56,13 @@ export default defineConfig({
         emptyOutDir: false,
         rollupOptions: {
             input: {
-                ...currentConfig
+                ...currentConfig["build.rollupOptions.input"]
             },
             output: {
                 entryFileNames: (chunkInfo) => chunkInfo.name + ".js",
             }
         },
-        outDir: "../dist",
+        outDir: currentConfig["build.outDir"],
     },
     assetsInclude: ['**/*.woff', '**/*.woff2']
 });

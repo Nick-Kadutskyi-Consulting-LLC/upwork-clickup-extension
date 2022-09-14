@@ -3,7 +3,7 @@
   "default_locale": "en",
   "name": "Upwork to ClickUp",
   "description": "Send Upwork leads to ClickUp",
-  "version": "0.1",
+  "version": "1.0.0",
   "author": "Nick Kadutskyi",
   "icons": {
     "64": "images/icon-64.png",
@@ -12,12 +12,12 @@
     "512": "images/icon-512.png"
   },
   "background": {
-    "scripts": ["dist/background.js"]
+    "scripts": ["background/index.js"]
   },
   "content_scripts": [
     {
       "js": [
-        "dist/content.js"
+        "content/index.js"
       ],
       "matches": [
         "*://*.upwork.com/*"
@@ -25,7 +25,7 @@
     }
   ],
   "options_ui": {
-    "page": "dist/index.html",
+    "page": "preferences/index.html",
     "browser_style": true,
     "open_in_tab": true
   },
