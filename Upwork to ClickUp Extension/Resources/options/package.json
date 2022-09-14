@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "preview": "vite preview --port 4173",
-    "build-only": "vite build",
+    "build-only": "vite build --emptyOutDir",
     "build:content": "LIB_NAME=content run-p type-check build-only",
     "build:options": "LIB_NAME=options run-p type-check build-only",
     "build:background": "LIB_NAME=background run-p type-check build-only",
