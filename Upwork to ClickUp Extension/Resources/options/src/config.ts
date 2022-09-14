@@ -1,5 +1,6 @@
 import type {ClFieldType, JobFieldsDefinition, JobPosting, ClickUpCustomFieldDefinition} from "@/types";
 import {addDollarSign, unixToStr} from "@/utils";
+import dayjs from "dayjs";
 
 export const API_BASE_DOMAIN = "https://api.clickup.com"
 export const API_BASE_URL = "/api/v2"
@@ -41,24 +42,24 @@ export const JOB_FIELDS_TYPES: JobFieldsDefinition[] = [
         name: 'Date Posted',
         types: ['text', 'short_text', 'date', 'number'],
         handlers: {
-            short_text: unixToStr,
-            text: unixToStr
+            short_text: (unix: EpochTimeStamp) => dayjs(unix).format('MMM D, YYYY'),
+            text: (unix: EpochTimeStamp) => dayjs(unix).format('MMM D, YYYY')
         }
     },
     {
         name: 'Budget',
         types: ['text', 'short_text', 'number', 'currency'],
         handlers: {
-            short_text: addDollarSign,
-            text: addDollarSign,
+            short_text: (sum: number) => `$${sum}`,
+            text: (sum: number) => `$${sum}`,
         }
     },
     {
         name: 'Total Spent',
         types: ['text', 'short_text', 'number', 'currency'],
         handlers: {
-            short_text: addDollarSign,
-            text: addDollarSign,
+            short_text: (sum: number) => `$${sum}`,
+            text: (sum: number) => `$${sum}`,
         }
     }
 ]

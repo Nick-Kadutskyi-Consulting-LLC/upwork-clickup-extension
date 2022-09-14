@@ -3,7 +3,6 @@ import {storageGet, storageSet} from "@/localStorage";
 import type {JobPosting, JobSentToClickUp, LocalStore} from "@/types";
 import {getJobUniqueId} from "@/scrapper";
 import {prepClickUpBody} from "@/clickUpTaskBody";
-import type {Tabs} from "webextension-polyfill";
 
 export const convertArrayToObject = (array: [], key: string) => {
     const initialValue = {};
@@ -134,7 +133,7 @@ export const labelSavedJobs = (jobs: NodeListOf<HTMLElement>) => {
                             })
 
                             const image = document.createElement("img");
-                            image.src = browser.runtime.getURL("images/cl-icon.png");
+                            image.src = chrome.runtime.getURL("images/cl-icon.png");
                             image.className = "clickup-icon"
                             image.style.width = '100%'
                             image.style.marginTop = '1px'
@@ -150,11 +149,11 @@ export const labelSavedJobs = (jobs: NodeListOf<HTMLElement>) => {
     })
 }
 
-export const isJobSaved = (uniqueId: string): Promise<JobSentToClickUp | undefined> => {
+export const isJobSaved = (uniqueId: string): Promise<JobSentToClickUp[] | undefined> => {
     return storageGet().then((stored: LocalStore) => {
         const savedJobs = stored?.upworkJobsSentToClickUp
         if (savedJobs != undefined && savedJobs.length > 0) {
-            return savedJobs.find(j => j.job_id === uniqueId)
+            return savedJobs.filter(j => j.job_id === uniqueId)
         } else {
             return undefined
         }
@@ -176,21 +175,21 @@ export const canSaveJobs = () => {
 export const setIcon = (tabId: number, windowId: number, url: string) => {
     const uniqueId = getJobUniqueId(url)
     if (!uniqueId) {
-        browser.browserAction.disable(tabId).then()
-        return browser.browserAction.setIcon({path: '/images/disabled-48x48@1x.png', tabId, windowId})
+        chrome.action.disable(tabId).then()
+        return chrome.action.setIcon({path: '/images/disabled-48x48@1x.png', tabId})
     } else {
         return isJobSaved(uniqueId).then(savedJob => {
-            if (savedJob) {
-                browser.browserAction.enable(tabId).then()
-                return browser.browserAction.setIcon({path: '/images/link-48x48@1x.png', tabId, windowId})
+            if (savedJob?.length !== undefined && savedJob?.length > 0) {
+                chrome.action.enable(tabId).then()
+                return chrome.action.setIcon({path: '/images/link-48x48@1x.png', tabId})
             } else {
                 return canSaveJobs().then((canSave: boolean) => {
                     if (canSave) {
-                        browser.browserAction.enable(tabId).then()
+                        chrome.action.enable(tabId).then()
                     } else {
-                        browser.browserAction.disable(tabId).then()
+                        chrome.action.disable(tabId).then()
                     }
-                    return browser.browserAction.setIcon({path: '/images/add-48x48@1x.png', tabId, windowId})
+                    return chrome.action.setIcon({path: '/images/add-48x48@1x.png', tabId})
                 })
             }
         })
@@ -198,33 +197,34 @@ export const setIcon = (tabId: number, windowId: number, url: string) => {
 }
 
 export const resetAllIcons = () => {
-    browser.tabs.query({}).then((tabs) => {
+    return chrome.tabs.query({url: "*://*.upwork.com/*"}).then((tabs) => {
+        const promises: Promise<any>[] = []
         for (let i = 0; i < tabs.length; ++i) {
             const tabId = tabs?.[i]?.id
             if (tabId !== undefined) {
-                browser.tabs.sendMessage(tabId, {action: "RESET_ALL_ICONS"}).then()
+                promises.push(chrome.tabs.sendMessage(tabId, {action: "RESET_ALL_ICONS"}))
             }
         }
+        return Promise.all(promises)
     })
 }
 
-export const saveJob = (jobPosting: JobPosting, tab: Tabs.Tab) => {
+export const saveJob = (jobPosting: JobPosting, tab: chrome.tabs.Tab) => {
     storageGet().then((stored: LocalStore) => {
         const apiKey = stored?.clickUpApiToken
         const list = stored?.clickUpListToSaveJobs
         if (list && apiKey) {
-            browser.browserAction.disable(tab.id).then()
-            browser.browserAction.setIcon({
+            chrome.action.disable(tab.id).then()
+            chrome.action.setIcon({
                 tabId: tab.id,
                 path: '/images/loading-48x48@1x.png'
-            }).then()
+            })
             fetch(`https://api.clickup.com/api/v2/list/${list?.id}/task`, {
                 method: 'POST',
                 credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
                     Authorization: apiKey
                 },
                 body: JSON.stringify(prepClickUpBody(jobPosting, stored?.taskFieldMarkup))
@@ -258,15 +258,15 @@ export const saveJob = (jobPosting: JobPosting, tab: Tabs.Tab) => {
     })
 }
 
-export const updateContextMenus = (tab: Tabs.Tab) => {
+export const updateContextMenus = (tab: chrome.tabs.Tab) => {
     const uniqueId = getJobUniqueId(tab.url)
     if (!!uniqueId) {
         canSaveJobs().then((canSave: boolean) => {
             if (canSave) {
-                browser.contextMenus.update('save-job', {enabled: true}).then()
+                chrome.contextMenus.update('save-job', {enabled: true})
             }
         })
     } else {
-        browser.contextMenus.update('save-job', {enabled: false}).then()
+        chrome.contextMenus.update('save-job', {enabled: false})
     }
 }

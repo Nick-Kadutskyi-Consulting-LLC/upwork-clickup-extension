@@ -8,9 +8,11 @@ import vitePluginRequire from "vite-plugin-require";
 
 
 const config = {
-    other: {
+    options: {
         index: resolve(__dirname, './index.html'),
-        background: resolve(__dirname, './background.html'),
+    },
+    background: {
+        background: resolve(__dirname, './src/background.ts'),
     },
     content: {
         content: resolve(__dirname, './src/content.ts'),
@@ -18,7 +20,7 @@ const config = {
 };
 
 // @ts-ignore
-const currentConfig = config[process.env.LIB_NAME || "other"];
+const currentConfig = config[process.env.LIB_NAME || "options"];
 
 if (currentConfig === undefined) {
     throw new Error('LIB_NAME is not defined or is not valid');
@@ -49,9 +51,9 @@ export default defineConfig({
             },
             output: {
                 entryFileNames: (chunkInfo) => chunkInfo.name + ".js",
-            },
-            external: ['/browser-polyfill.js']
-        }
+            }
+        },
+        outDir: "../dist",
     },
     assetsInclude: ['**/*.woff', '**/*.woff2']
 });

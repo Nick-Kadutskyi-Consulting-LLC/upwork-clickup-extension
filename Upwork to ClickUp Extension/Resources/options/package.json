@@ -6,8 +6,9 @@
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "build:content": "LIB_NAME=content run-p type-check build-only",
-    "build:other": "LIB_NAME=other run-p type-check build-only",
-    "build": "pnpm run build:content && pnpm run build:other",
+    "build:options": "LIB_NAME=options run-p type-check build-only",
+    "build:background": "LIB_NAME=background run-p type-check build-only",
+    "build": "pnpm run build:content && pnpm run build:background && pnpm run build:options",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
@@ -22,7 +23,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "@popperjs/core": "^2.11.5",
-    "@types/webextension-polyfill": "^0.9.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "chrono-node": "^2.4.1",
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
     "@types/bootstrap": "^5.2.3",
+    "@types/chrome": "^0.0.196",
     "@types/debounce": "^1.2.1",
     "@types/lodash": "^4.14.185",
     "@types/node": "^16.11.56",

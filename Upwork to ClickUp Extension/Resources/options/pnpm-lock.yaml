@@ -13,11 +13,11 @@ specifiers:
   '@popperjs/core': ^2.11.5
   '@rushstack/eslint-patch': ^1.1.4
   '@types/bootstrap': ^5.2.3
+  '@types/chrome': ^0.0.196
   '@types/debounce': ^1.2.1
   '@types/lodash': ^4.14.185
   '@types/node': ^16.11.56
   '@types/numeral': ^2.0.2
-  '@types/webextension-polyfill': ^0.9.0
   '@vitejs/plugin-vue': ^3.0.1
   '@vitejs/plugin-vue-jsx': ^2.0.0
   '@vue/eslint-config-prettier': ^7.0.0
@@ -55,7 +55,6 @@ dependencies:
   '@fortawesome/free-solid-svg-icons': 6.2.0
   '@fortawesome/vue-fontawesome': 3.0.1_gt4r53rjb3wr7ytyi5ocjfm2ay
   '@popperjs/core': 2.11.6
-  '@types/webextension-polyfill': 0.9.0
   axios: 0.27.2
   bootstrap: 5.2.0_@popperjs+core@2.11.6
   chrono-node: 2.4.1
@@ -72,6 +71,7 @@ dependencies:
 devDependencies:
   '@rushstack/eslint-patch': 1.1.4
   '@types/bootstrap': 5.2.3
+  '@types/chrome': 0.0.196
   '@types/debounce': 1.2.1
   '@types/lodash': 4.14.185
   '@types/node': 16.11.56
@@ -564,6 +564,13 @@ packages:
       '@popperjs/core': 2.11.6
     dev: true
 
+  /@types/chrome/0.0.196:
+    resolution: {integrity: sha512-LAjGIQYC0wyiYu6lVT03dBrHBfYTMsM8EmNfQ+UdZipGZe8OUiir6weoa9oQoBw3T3RLzBCp9m904T+rFtpPAg==}
+    dependencies:
+      '@types/filesystem': 0.0.32
+      '@types/har-format': 1.2.8
+    dev: true
+
   /@types/debounce/1.2.1:
     resolution: {integrity: sha512-epMsEE85fi4lfmJUH/89/iV/LI+F5CvNIvmgs5g5jYFPfhO2S/ae8WSsLOKWdwtoaZw9Q2IhJ4tQ5tFCcS/4HA==}
     dev: true
@@ -586,6 +593,20 @@ packages:
     resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
     dev: false
 
+  /@types/filesystem/0.0.32:
+    resolution: {integrity: sha512-Yuf4jR5YYMR2DVgwuCiP11s0xuVRyPKmz8vo6HBY3CGdeMj8af93CFZX+T82+VD1+UqHOxTq31lO7MI7lepBtQ==}
+    dependencies:
+      '@types/filewriter': 0.0.29
+    dev: true
+
+  /@types/filewriter/0.0.29:
+    resolution: {integrity: sha512-BsPXH/irW0ht0Ji6iw/jJaK8Lj3FJemon2gvEqHKpCdDCeemHa+rI3WBGq5z7cDMZgoLjY40oninGxqk+8NzNQ==}
+    dev: true
+
+  /@types/har-format/1.2.8:
+    resolution: {integrity: sha512-OP6L9VuZNdskgNN3zFQQ54ceYD8OLq5IbqO4VK91ORLfOm7WdT/CiT/pHEBSQEqCInJ2y3O6iCm/zGtPElpgJQ==}
+    dev: true
+
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
 
@@ -599,10 +620,6 @@ packages:
   /@types/numeral/2.0.2:
     resolution: {integrity: sha512-A8F30k2gYJ/6e07spSCPpkuZu79LCnkPTvqmIWQzNGcrzwFKpVOydG41lNt5wZXjSI149qjyzC2L1+F2PD/NUA==}
     dev: true
-
-  /@types/webextension-polyfill/0.9.0:
-    resolution: {integrity: sha512-HG1y1o2hK8ag6Y7dfkrAbfKmMIP+B0E6SwAzUfmQ1dDxEIdLTtMyrStY26suHBPrAL7Xw/chlDW02ugc3uXWtQ==}
-    dev: false
 
   /@typescript-eslint/eslint-plugin/5.36.1_uoznksvaqimddkvahx6c3yyzku:
     resolution: {integrity: sha512-iC40UK8q1tMepSDwiLbTbMXKDxzNy+4TfPWgIL661Ym0sD42vRcQU93IsZIrmi+x292DBr60UI/gSwfdVYexCA==}

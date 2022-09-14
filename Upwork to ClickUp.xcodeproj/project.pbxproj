@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0174541928CE8FAC003C1EB7 /* browser-polyfill.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0174541728CE8FAC003C1EB7 /* browser-polyfill.min.js */; };
 		0174541B28CF2CAA003C1EB7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0174541A28CF2CAA003C1EB7 /* Icon.png */; };
+		0174541D28CF3037003C1EB7 /* dist in Resources */ = {isa = PBXBuildFile; fileRef = 0174541C28CF3037003C1EB7 /* dist */; };
 		0194207B28BE85DD0096E1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194207A28BE85DD0096E1BA /* AppDelegate.swift */; };
 		0194207F28BE85DD0096E1BA /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 0194207D28BE85DD0096E1BA /* Main.html */; };
 		0194208328BE85DD0096E1BA /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 0194208228BE85DD0096E1BA /* Style.css */; };
@@ -21,8 +21,6 @@
 		0194209C28BE85E10096E1BA /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 0194209B28BE85E10096E1BA /* _locales */; };
 		0194209E28BE85E20096E1BA /* images in Resources */ = {isa = PBXBuildFile; fileRef = 0194209D28BE85E20096E1BA /* images */; };
 		019420A028BE85E20096E1BA /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 0194209F28BE85E20096E1BA /* manifest.json */; };
-		019420C528BEA25B0096E1BA /* dist in Resources */ = {isa = PBXBuildFile; fileRef = 019420C428BEA25B0096E1BA /* dist */; };
-		3397648B8929232DD93ADBCA /* background.html in Resources */ = {isa = PBXBuildFile; fileRef = 33976426282C1152463B53D2 /* background.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0174541728CE8FAC003C1EB7 /* browser-polyfill.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "browser-polyfill.min.js"; path = "Upwork to ClickUp Extension/Resources/browser-polyfill.min.js"; sourceTree = "<group>"; };
-		0174541828CE8FAC003C1EB7 /* browser-polyfill.min.js.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = "browser-polyfill.min.js.map"; path = "Upwork to ClickUp Extension/Resources/browser-polyfill.min.js.map"; sourceTree = "<group>"; };
 		0174541A28CF2CAA003C1EB7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		0174541C28CF3037003C1EB7 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dist; sourceTree = "<group>"; };
 		0194207728BE85DD0096E1BA /* Upwork to ClickUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Upwork to ClickUp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0194207A28BE85DD0096E1BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0194207E28BE85DD0096E1BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = ../Base.lproj/Main.html; sourceTree = "<group>"; };
@@ -67,11 +64,9 @@
 		0194209828BE85E10096E1BA /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
 		0194209B28BE85E10096E1BA /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
 		0194209D28BE85E20096E1BA /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
-		0194209F28BE85E20096E1BA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		0194209F28BE85E20096E1BA /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; lineEnding = 1; path = manifest.json; sourceTree = "<group>"; };
 		019420AB28BE85E20096E1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		019420AC28BE85E20096E1BA /* Upwork_to_ClickUp_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Upwork_to_ClickUp_Extension.entitlements; sourceTree = "<group>"; };
-		019420C428BEA25B0096E1BA /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dist; path = options/dist; sourceTree = "<group>"; };
-		33976426282C1152463B53D2 /* background.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = background.html; path = options/background.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +90,6 @@
 		0194206E28BE85DD0096E1BA = {
 			isa = PBXGroup;
 			children = (
-				0174541728CE8FAC003C1EB7 /* browser-polyfill.min.js */,
-				0174541828CE8FAC003C1EB7 /* browser-polyfill.min.js.map */,
 				0194207928BE85DD0096E1BA /* Upwork to ClickUp */,
 				0194209728BE85E10096E1BA /* Upwork to ClickUp Extension */,
 				0194207828BE85DD0096E1BA /* Products */,
@@ -151,11 +144,10 @@
 		0194209A28BE85E10096E1BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				019420C428BEA25B0096E1BA /* dist */,
+				0174541C28CF3037003C1EB7 /* dist */,
 				0194209B28BE85E10096E1BA /* _locales */,
 				0194209D28BE85E20096E1BA /* images */,
 				0194209F28BE85E20096E1BA /* manifest.json */,
-				33976426282C1152463B53D2 /* background.html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -254,12 +246,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				019420C528BEA25B0096E1BA /* dist in Resources */,
+				0174541D28CF3037003C1EB7 /* dist in Resources */,
 				0194209E28BE85E20096E1BA /* images in Resources */,
-				0174541928CE8FAC003C1EB7 /* browser-polyfill.min.js in Resources */,
 				019420A028BE85E20096E1BA /* manifest.json in Resources */,
 				0194209C28BE85E10096E1BA /* _locales in Resources */,
-				3397648B8929232DD93ADBCA /* background.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
