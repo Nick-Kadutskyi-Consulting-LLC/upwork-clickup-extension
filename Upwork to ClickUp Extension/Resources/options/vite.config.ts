@@ -53,7 +53,6 @@ export default defineConfig({
     },
     base: "",
     build: {
-        emptyOutDir: false,
         rollupOptions: {
             input: {
                 ...currentConfig["build.rollupOptions.input"]

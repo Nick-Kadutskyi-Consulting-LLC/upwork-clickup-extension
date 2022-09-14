@@ -1,6 +1,6 @@
 .idea
 .fleet
 node_modules
-background
-content
-preferences
+#background
+#content
+#preferences
