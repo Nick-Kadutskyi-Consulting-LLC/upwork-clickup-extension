@@ -6,6 +6,7 @@ import type {ClFieldType, ClList, JobSentToClickUp, LocalStore} from "@/types";
 import apiClient from "@/apiClient";
 import {STANDARD_CU_FIELDS} from "@/config";
 import {resetAllIcons} from "@/utils";
+import _ from "lodash";
 
 export const useLocalStore = defineStore('local', () => {
     const clickUpApiToken: Ref<string | undefined | null> = ref(undefined)
@@ -20,6 +21,10 @@ export const useLocalStore = defineStore('local', () => {
     const patched: Ref<boolean> = ref(false)
 
     const taskFieldMarkup: Ref<{ [key: string]: { type: ClFieldType, markup: string } }> = ref({})
+
+    function setUpworkJobsSentToClickUp(jobs: JobSentToClickUp[]) {
+        upworkJobsSentToClickUp.value = jobs
+    }
 
     function setClickUpApiToken(token?: string | null) {
         clickUpApiToken.value = token
@@ -39,6 +44,10 @@ export const useLocalStore = defineStore('local', () => {
                     availableFieldsInList.value = res.fields
                 })
         }
+    }
+
+    function setTaskFieldMarkupObj(obj: { [key: string]: { type: ClFieldType, markup: string } }) {
+        taskFieldMarkup.value = obj
     }
 
     function setTaskFieldMarkup(inputNodes: Array<HTMLElement>, fieldId: string) {
@@ -70,6 +79,8 @@ export const useLocalStore = defineStore('local', () => {
         }
         const field = getById.value(fieldId) || STANDARD_CU_FIELDS.find(f => f.id === fieldId)
         taskFieldMarkup.value[fieldId] = {type: field?.type, markup: text}
+
+        return _.cloneDeep(taskFieldMarkup.value)
     }
 
     watch(clickUpListToSaveJobs, () => {
@@ -90,5 +101,7 @@ export const useLocalStore = defineStore('local', () => {
         setClickUpListToSaveJobs,
         fetchAccessibleCustomFields,
         setTaskFieldMarkup,
+        setTaskFieldMarkupObj,
+        setUpworkJobsSentToClickUp,
     }
 });

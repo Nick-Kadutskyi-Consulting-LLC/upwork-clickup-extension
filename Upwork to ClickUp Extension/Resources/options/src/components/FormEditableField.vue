@@ -61,11 +61,12 @@
 
 <script setup lang="ts">
 import {JOB_FIELDS, JOB_FIELDS_TYPES} from "@/config";
-import {computed, onMounted, ref, watch} from "vue";
+import {computed, onMounted, onUpdated, ref, watch} from "vue";
 import type {Ref} from "vue"
 import {pasteHtmlAtCaret, restoreSelection, saveSelection, selectElementContents} from "@/utils";
 import {useLocalStore} from "@/stores/local";
 import type {ClickUpCustomFieldDefinition, JobFieldsDefinition, ClFieldType} from "@/types";
+import _ from "lodash";
 
 /* global font-awesome-icon */
 const {jobFields = JOB_FIELDS_TYPES, customField} = defineProps<{
@@ -79,6 +80,8 @@ const local = useLocalStore()
 const disabled = ref(true)
 const input = ref()
 
+const currentMarkup = ref({})
+
 const hovered: Ref<{ [key: string]: boolean }> = ref(JOB_FIELDS.reduce((o, key) => ({...o, [key]: false}), {}))
 
 const addJobField = (field: JobFieldsDefinition) => {
@@ -91,7 +94,7 @@ const addJobField = (field: JobFieldsDefinition) => {
     }
     pasteHtmlAtCaret(getTagHTML(field.name), true, input.value)
   }
-  local.setTaskFieldMarkup(input.value.childNodes, customField.id)
+  currentMarkup.value = local.setTaskFieldMarkup(input.value.childNodes, customField.id)
 }
 const spaceEl = document.createElement('span')
 spaceEl.innerHTML = "&#xFEFF;"
@@ -99,7 +102,7 @@ const space = spaceEl.childNodes[0].nodeValue
 
 const clearField = () => {
   input.value.innerHTML = ''
-  local.setTaskFieldMarkup(input.value.childNodes, customField.id)
+  currentMarkup.value = local.setTaskFieldMarkup(input.value.childNodes, customField.id)
 }
 
 const onInput = (event: Event) => {
@@ -135,7 +138,7 @@ const onInput = (event: Event) => {
     }
   }
 
-  local.setTaskFieldMarkup(input.value.childNodes, customField.id)
+  currentMarkup.value = local.setTaskFieldMarkup(input.value.childNodes, customField.id)
 }
 const onRemove = () => {
   const fields = input.value.querySelectorAll('.field-container')
@@ -184,20 +187,25 @@ const assignInput = (fieldMarkup: { type: ClFieldType, markup: string }) => {
       return getTagHTML(p2)
     })
     input.value.innerHTML = text
+  } else {
+    input.value.innerHTML = ""
   }
 }
+watch(() => local.$state.taskFieldMarkup, markup => {
+  if (!_.isEqual(markup, currentMarkup.value)) {
+    assignInput(local.$state.taskFieldMarkup[customField.id])
+  }
+}, {deep: true})
 
-// const fieldEl = ref()
-// const tooltipList: Ref<any[]> = ref([])
 onMounted(() => {
-  // const tooltipTriggerList = fieldEl.value.querySelectorAll('[data-bs-toggle="tooltip"]')
-  // tooltipList.value = [...tooltipTriggerList].map(tooltipTriggerEl => new window.bootstrap.Tooltip(tooltipTriggerEl))
   if (local.$state.patched) {
+    currentMarkup.value = _.cloneDeep(local.$state.taskFieldMarkup)
     assignInput(local.$state.taskFieldMarkup[customField.id])
     disabled.value = false
   } else {
     const stopWatching = watch(() => local.$state.patched, patched => {
       if (patched) {
+        currentMarkup.value = _.cloneDeep(local.$state.taskFieldMarkup)
         assignInput(local.$state.taskFieldMarkup[customField.id])
         stopWatching()
         disabled.value = false

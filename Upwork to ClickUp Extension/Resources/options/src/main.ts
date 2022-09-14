@@ -20,7 +20,7 @@ import {
     faDollar
 } from '@fortawesome/free-solid-svg-icons'
 
-browser.runtime.sendMessage({action: "DISABLE_ACTION_ON_START"}).then();
+chrome.runtime.sendMessage({action: "DISABLE_ACTION_ON_START"}).then();
 
 window.bootstrap = bootstrap
 

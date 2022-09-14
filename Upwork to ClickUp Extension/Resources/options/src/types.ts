@@ -1,13 +1,7 @@
-import type {Browser} from "webextension-polyfill";
 
 declare global {
-    const browser: Browser
-
-    interface Window {
-        bootstrap: any;
-    }
-
     const require: any;
+    const browser: any;
     namespace NodeJS {
         interface ProcessEnv {
             LIB_NAME: string;

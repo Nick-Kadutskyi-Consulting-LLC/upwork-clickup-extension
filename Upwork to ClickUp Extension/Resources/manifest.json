@@ -1,24 +1,22 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "default_locale": "en",
   "name": "Upwork to ClickUp",
   "description": "Send Upwork leads to ClickUp",
   "version": "0.1",
+  "author": "Nick Kadutskyi",
   "icons": {
-    "48": "images/icon-48.png",
-    "96": "images/icon-96.png",
+    "64": "images/icon-64.png",
     "128": "images/icon-128.png",
     "256": "images/icon-256.png",
     "512": "images/icon-512.png"
   },
   "background": {
-    "page": "dist/background.html",
-    "persistent": false
+    "scripts": ["dist/background.js"]
   },
   "content_scripts": [
     {
       "js": [
-        "browser-polyfill.min.js",
         "dist/content.js"
       ],
       "matches": [
@@ -28,19 +26,28 @@
   ],
   "options_ui": {
     "page": "dist/index.html",
-    "browser_style": true
+    "browser_style": true,
+    "open_in_tab": true
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "48": "images/disabled-48x48@1x.png"
     }
   },
   "permissions": [
     "storage",
-    "https://api.clickup.com/*",
-    "contextMenus"
+    "contextMenus",
+    "tabs"
   ],
+  "host_permissions": ["https://api.clickup.com/*"],
   "web_accessible_resources": [
-    "images/cl-icon.png"
+    {
+      "resources": [
+        "/images/cl-icon.png"
+      ],
+      "matches": [
+        "*://*.upwork.com/*"
+      ]
+    }
   ]
 }
